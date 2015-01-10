@@ -35,7 +35,8 @@ class apiController extends Controller{
         }
         $data = $query;
         if(!$data) $data = array('message'=>'ciao ciao');
-        $this->response = CoreFactory::getResponse(Response::RESPONSE_JSON,$data);
+        $this->response = CoreFactory::getResponse();
+        $this->response->setType(Response::RESPONSE_JSON)->setData($data);
         $this->response->render();
     }
     

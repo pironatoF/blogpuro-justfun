@@ -11,10 +11,9 @@ class Response {
     const RESPONSE_HTML = 'html';
     const RESPONSE_JSON = 'json';
     
-    protected $type, $acceptedType = array('html', 'json'),$data,$controller,$action,$response;
+    protected $type, $acceptedType = array('html', 'json'),$data = array(),$controller,$action,$response;
     
-    public function __construct($type,$data) {
-        $this->setType($type)->setData($data);
+    public function __construct() {
         $this->setController()->setAction();
     }
     
@@ -39,9 +38,11 @@ class Response {
     public function getRequest(){
         return CoreFactory::getRequest();
     } 
-
-    protected function setData($data){
-        $this->data = $data;
+    
+    public function setData( array $data){
+        foreach($data as $k => $v){
+            $this->data[$k] = $v;
+        }
         return $this;
     }
     
@@ -53,7 +54,7 @@ class Response {
         return $this->type;
     }
 
-    private function setType($type) {
+    public function setType($type) {
         if(!in_array($type, $this->acceptedType)) return new \Exception('type not accepted');
         $this->type = $type;
         return $this;

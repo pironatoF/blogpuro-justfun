@@ -13,6 +13,8 @@ class Application{
     
     protected $core;
     
+    protected $router;
+    
     /**
      * Class name of the singleton  object.
      * @var string
@@ -44,6 +46,11 @@ class Application{
         $application = new self;
         $application->setCore(new Core($_SERVER, $_GET, $_POST));
         self::setInstance($application);
+        /* in questo modo ho il routing(router) già istanziato prima di runnare l'app e 
+         * posso agganciare le callback dei relativi hook prima di runnarlo
+         * 
+         */
+        $application->setRouter();
     }
     
     public static function setClassName($applicationClassName = 'Application')
@@ -65,6 +72,10 @@ class Application{
         return $this->core;
     }
 
+    public function getRouter(){
+        return $this->router;
+    }
+    
     public function setCore(Core $core) {
         $this->core = $core;
         return $this;
@@ -72,52 +83,22 @@ class Application{
 
     
     
-    public function getRouting() {
+    public function setRouter() {
 
         try {
-            $this->routing = new Routing(CoreFactory::getRoutingAdapter()->build());
+            $this->router = new Routing(CoreFactory::getRoutingAdapter()->build());
             
         } catch (Exception $exception) {
             $this->setStatus(self::STATUS_ERR);
             $this->setException ($exception);
             // da sostituire con un oggetto response da passare al /controller/view, da mandare in 505/404
+            // considerare anche l'idea di creare delle eccezioni personalizzate...
             die('<h2 style="color:red">'.$this->getStatus().'</h2> <br/>'.$this->getErrors());
         }
-        return $this->routing;
+        return $this->router;
     }
     
-    public function run(){
-        $routing = $this->getRouting();
-        
-        //@ŢODO: fare in modo che si possa hookare il routing da plugin
-        
-        $routingDebug = function(array $params)
-                        {
-                            echo '<section id="trace" style="border:1px solid #000;margin:5px;padding:5px;width:20%">';
-                            echo '<h2 style="color:crimson;text-align:center;border-bottom:1px dashed #000">PreRouting Trace</h2>';
-                            echo '<p>Controller: <strong>'.$params['controller'].'</strong></p>';
-                            echo '<p>Action: <strong>'.$params['action'].'</strong></p>';
-                            if($params['params']){
-                                echo '<h3>Parameters:</h3>';
-                                echo '<ol style="list-style:none">';
-                                foreach($params['params'] as $k=>$v){
-                                    echo '<li>';
-                                        echo '<p>'.$k.': <strong>'.$v.'</strong></p>';
-                                    echo '</li>';
-                                }
-                                echo '</ol>';
-                            } 
-                            echo '<p style="color:crimson;text-align:center;border-top:1px dashed #000">Time: <strong>'.$params['time'].'</strong></p>';
-                            echo '</section>';
-                        };
-        $time =  $this->getCore()->getServer()['REQUEST_TIME_FLOAT'];
-        $routing->run(  
-                    /*$routingDebug,
-                                    array(
-                                        'controller'=>$routing->getController(),
-                                        'action'=>$routing->getAction(),
-                                        'params'=>$routing->getParams(),
-                                        'time'=>$time)*/
-                    );
+    public function run($plugins = null){
+       $this->router->run( $plugins );
     }
 }

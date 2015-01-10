@@ -7,6 +7,10 @@ use Justfun\Core\Response as Response;
 use Justfun\Core\Application as Application;
 use Justfun\Core\routingAdapter as routingAdapter;
 
+use Justfun\Core\Database as Database;
+use Justfun\Core\mysqlAdapter as mysqlAdapter;
+use Justfun\Core\Plugin as PluginManager;
+
 /**
  * Description of Factory
  *
@@ -14,10 +18,24 @@ use Justfun\Core\routingAdapter as routingAdapter;
  */
 class Factory {
    
+    public static function getDatabase(){
+        $database = Database::getInstance();
+        return $database;
+    }
+    
+    public static function getMysqlAdapter(){
+        $adapter = mysqlAdapter::getInstance();
+        return $adapter;
+    }
+    
     public static function getApplication(){
         return Application::getInstance();
     }
 
+    public static function getPluginManager(){
+        return PluginManager::getInstance();
+    }
+    
     public static function getRoutingAdapter(){
         return new routingAdapter();
     }
@@ -27,11 +45,8 @@ class Factory {
         return $service;
     } 
     
-    public static function getResponse($type,$data){
-        if($type == Response::RESPONSE_HTML || $type == Response::RESPONSE_JSON){
-            $service = new Response($type,$data);
-            return $service;
-        }
-        return new \Exception('type not accepted');
+    public static function getResponse(){
+        $service = new Response();
+        return $service;
     }
 }

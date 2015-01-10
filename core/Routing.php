@@ -14,8 +14,14 @@ namespace Justfun\Core;
  * @author outsider
  */
 class Routing {
-
+    
+    const CALL_TIME_PRE = 'pre';
+    
+    const CALL_TIME_POST = 'post';
+    
     protected $controller, $action, $params, $view;
+    
+    protected $preRunPlugins = array(),$postRunPlugins = array();
     
     public function __construct($adapter) {
         // view hardcoded
@@ -61,7 +67,7 @@ class Routing {
     }
 
     
-
+    /*
     public function preRouting($fn, $config = null) {
         if (is_callable($fn)) {
             return call_user_func($fn, $config);
@@ -72,13 +78,53 @@ class Routing {
         if (is_callable($fn)) {
             return call_user_func($fn, $config);
         }
+    }*/
+
+    // va a eseguire il plugin
+    protected function pluginRun($fn, $config = null) {
+        if(is_callable($fn) ){
+            return call_user_func($fn,$config);
+        }
     }
 
+    // si occupa di pushare i plugin nelle giuste posizioni di esecuzione
+    protected function pluginPush($callTime,$callback,$params){
+        if($callTime == self::CALL_TIME_PRE){
+            $this->preRunPlugins[] = array($callback,$params); 
+        }elseif($callTime == self::CALL_TIME_POST){
+            $this->postRunPlugins[] = array($callback,$params);
+        }
+    }
     
-    public function run($preRoutingCallback=null,$preRoutingParams=null,$postRoutingCallback=null,$postRoutingParams=null)
+    // va a eseguire gli hook
+    protected function pluginsRun($callTime){
+        if($callTime == self::CALL_TIME_PRE){
+            $plugins = $this->preRunPlugins;
+        }elseif($callTime == self::CALL_TIME_POST){
+            $plugins = $this->postRunPlugins;
+        }
+        foreach($plugins as $plugin){
+            $this->pluginRun($plugin[0], $plugin[1]);
+        }
+        
+    }
+    
+    // inizializza la gestione dei plugin
+    protected function pluginsInit($plugins = null){
+        if(!$plugins) return null;
+        foreach($plugins as $plugin){
+            $this->pluginPush($plugin[1]['callTime'],$plugin[0],$plugin[1]);
+        }
+    }
+    
+    public function run($plugins = null)
     {
-        $this->preRouting($preRoutingCallback, $preRoutingParams);
-                
+        if($plugins) $this->pluginsInit($plugins);
+        
+        
+        //$this->preRouting($preRoutingCallback, $preRoutingParams);
+        if($plugins) $this->pluginsRun(self::CALL_TIME_PRE);   
+        
         // @TODO: rifattorizzare le varie chiamate, instanziando le classi tramite un factory che gestisca le dipendenze
         $className = '\\Justfun\\Controllers\\'.$this->getController().'Controller';
         if(!class_exists($className)) die('bad controller provided'); // gestire l'eccezione
@@ -93,6 +139,7 @@ class Routing {
             die('bad action provided'); // gestire l'eccezione
         }
         
-        $this->postRouting($postRoutingCallback,$postRoutingParams);
+        if($plugins) $this->pluginsRun(self::CALL_TIME_POST);
+        //$this->postRouting($postRoutingCallback,$postRoutingParams);
     }
 }

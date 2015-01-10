@@ -46,6 +46,16 @@ class routingAdapter {
             }
         }
         
+        // homepage
+        if( 
+            ($data['controller'] == '' && !isset($data['action']) )         || 
+            ($data['controller'] == 'index' && !isset($data['action']) )    ||
+            ($data['controller'] == 'index' && $data['action'] == '' )    
+        ){
+            $data['controller'] = 'index'; 
+            $data['action'] = 'index';
+        }
+        
         $adapter = (object)array(
             'controller'=>$data['controller'],
             'action'=>$data['action'],

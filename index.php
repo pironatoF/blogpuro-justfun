@@ -1,6 +1,7 @@
 <?php
 
 use Justfun\Core\Factory as CoreFactory;
+
 error_reporting(E_ALL);
 ini_set('display_errors','On');
 
@@ -43,9 +44,26 @@ function __autoload($class_name) {
     include $path. '.php';
 }
 
+// include plugin
+$pluginsInDir = glob("plugins/*.php");
+if(count($pluginsInDir) > 0){
+    foreach($pluginsInDir as $plugin) include $plugin;
+}
+// include entities
+$entitiesInDir = glob("entities/*.php");
+if(count($entitiesInDir) > 0){
+    foreach($entitiesInDir as $entity) include $entity;
+}
+// include repositories
+$repositoriesInDir = glob("repositories/*.php");
+if(count($repositoriesInDir) > 0){
+    foreach($repositoriesInDir as $repository) include $repository;
+}
+
 // starta l'applicazione
 $app = CoreFactory::getApplication();
-$app->run();
+$plugins = CoreFactory::getPluginManager()->getPlugins();
+$app->run($plugins);
 
 
 

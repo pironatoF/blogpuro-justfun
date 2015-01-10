@@ -27,7 +27,8 @@ class testController extends Controller{
         }
         $data = $query;
         
-        $this->response = CoreFactory::getResponse(Response::RESPONSE_HTML,$data);
+        $this->response = CoreFactory::getResponse();
+        $this->response->setType(Response::RESPONSE_HTML)->setData($data);
         $this->response->render();
     }
     
@@ -41,7 +42,8 @@ class testController extends Controller{
         $data = $query;
         
         if(!$data) $data = array('message'=>'ciao ciao');
-        $this->response = CoreFactory::getResponse(Response::RESPONSE_JSON,  $data);
+        $this->response = CoreFactory::getResponse();
+        $this->response->setType(Response::RESPONSE_JSON)->setData($data);
         $this->response->render();
     }
     
@@ -56,7 +58,8 @@ class testController extends Controller{
         $data = $query;
         
         if(!$data) $data = array('message'=>'ciao ciao');
-        $this->response = CoreFactory::getResponse(Response::RESPONSE_JSON,  $data);
+        $this->response = CoreFactory::getResponse();
+        $this->response->setType(Response::RESPONSE_JSON)->setData($data);
         $this->response->render();
     }
     
