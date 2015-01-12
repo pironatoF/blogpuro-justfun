@@ -13,12 +13,17 @@ namespace Justfun\Entities;
  */
 class postEntity {
     
-    protected $id,$title,$message,$created;
+    const ENTITY_NAME = 'post';
+    const MESSAGE_PREVIEW_MAXLENGTH = 120;
+    
+    protected static $count = 0;
+    
+    protected $id,$title,$message,$created,$url;
     
     public function getId() {
         return $this->id;
     }
-
+    
     public function getTitle() {
         return $this->title;
     }
@@ -26,9 +31,26 @@ class postEntity {
     public function getMessage() {
         return $this->message;
     }
+    
+    public function getMessagePreview(){
+        $message = substr($this->message, 0, self::MESSAGE_PREVIEW_MAXLENGTH);
+        libxml_use_internal_errors(true); // evita errori dovuti a tag troncati
+        $node = new \DOMDocument();
+        $node->loadHTML($message);
+        $node->normalizeDocument(); // normalizza il documento (chiude tag aperti)
+        // rimuove doctype e tag html body
+        $message =  preg_replace('/^<!DOCTYPE.+?>/',
+                                 '',
+                                str_replace( 
+                                    array('<html>', '</html>', '<body>', '</body>'), 
+                                    array('', '', '', ''), 
+                                    $node->saveHTML()));
+        return $message;
+    }
 
     public function getCreated() {
-        return $this->created;
+        return date("g:i a F j, Y ", strtotime($this->created));
+        //return $this->created;
     }
 
     public function setId($id) {
@@ -51,5 +73,13 @@ class postEntity {
         return $this;
     }
 
+    // @TODO: generare l'url adatto
+    public function getUrl() {
+        return '/'.self::ENTITY_NAME.'/'.$this->url;
+    }
 
+    public function setUrl($url) {
+        $this->url = $url;
+        return $this;
+    }
 }

@@ -1,0 +1,11 @@
+<div class="blog-masthead">
+    <div class="container">
+        
+        <nav class="blog-nav">
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'homepage'): echo 'active'; endif; ?>" href="/">Home</a>
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'contact'): echo 'active'; endif; ?>" href="#">Contact</a>
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'about'): echo 'active'; endif; ?>" href="#">About</a>
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'auth'): echo 'active'; endif; ?>" href="/auth/login">Login</a>
+        </nav>
+    </div>
+</div>

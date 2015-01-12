@@ -11,7 +11,11 @@ class Response {
     const RESPONSE_HTML = 'html';
     const RESPONSE_JSON = 'json';
     
+    const DEFAULT_ACTIVE_NAV_ITEM = 'homepage';
+    
     protected $type, $acceptedType = array('html', 'json'),$data = array(),$controller,$action,$response;
+    
+    protected $stylesheets = array();
     
     public function __construct() {
         $this->setController()->setAction();
@@ -72,7 +76,23 @@ class Response {
         $dir = str_replace('core/', '', $dir);
         include  $dir;
     }
-
+    
+    /**
+     * @TODO: gestire eventuale integrazione di moduli (ad esempio backend)
+     * @param type string $name
+     * @param type string $controller
+     */
+    public function renderPartial($name,$controller = null){
+        // se non c'è il controller il partial è del layout
+        if(!$controller):
+            $dir = __DIR__.'/views/layouts/partials/'.$name.'.phtml'; 
+        else:
+            $dir = __DIR__.'/views/'.$controller.'/partials/'.$name.'.phtml'; 
+        endif;
+        $dir = str_replace('core/', '', $dir);
+        include  $dir;
+    }
+    
     public function render(){
         $this->setResponse();
         switch ($this->getType()){
@@ -90,5 +110,41 @@ class Response {
             break;
         }
     }
+    
+    public function addStylesheet($name,$src = null){
+        if(!$src){
+            $src = '/public/css/'.$name.'.css';
+        }
+        $this->stylesheets[$name] = $src;
+        return $this;
+    }
+    
+    public function getStylesheets(){
+        return $this->stylesheets;
+    }
+    
+    public function getActiveItemNav(){
+        
+        switch($this->getController()):
+            case 'auth':
+                $activeItem = 'auth';
+            break;
+            case 'about':
+                $activeItem = 'about';
+            break;
+            case 'contact':
+                $activeItem = 'contact';
+            break;
+            case 'privacy':
+                $activeItem = 'privacy';
+            break;
+            default:
+                $activeItem = self::DEFAULT_ACTIVE_NAV_ITEM;    
+            break;
+        endswitch;  
+        
+        return $activeItem;
+    }
+    
     
 }

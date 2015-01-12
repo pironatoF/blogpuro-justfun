@@ -1,0 +1,17 @@
+<?php if ($this->response->getData()['posts']): ?>
+    <?php foreach ($this->response->getData()['posts'] as $post): ?>
+        <div class="blog-post">
+            <h2 class="blog-post-title"><?php echo $post->getTitle(); ?></h2>
+            <p class="blog-post-meta"><?php echo $post->getCreated(); ?> by  <a href="#">Pironato Francesco</a></p>
+            <p>
+                <?php echo $post->getMessagePreview(); ?> 
+                 <a href="<?php echo $post->getUrl(); ?>"> 
+                     <small><span class="glyphicon glyphicon-link"></span> Read more</small> 
+                </a> 
+            </p>
+            
+        </div>
+    <?php endforeach; ?>
+    <?php echo $this->response->renderPartial('paginator','index'); ?>
+<?php endif; ?>
+

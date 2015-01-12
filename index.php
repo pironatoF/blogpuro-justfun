@@ -60,6 +60,12 @@ if(count($repositoriesInDir) > 0){
     foreach($repositoriesInDir as $repository) include $repository;
 }
 
+// include services
+$servicesInDir = glob("services/*.php");
+if(count($servicesInDir) > 0){
+    foreach($servicesInDir as $service) include $service;
+}
+
 // starta l'applicazione
 $app = CoreFactory::getApplication();
 $plugins = CoreFactory::getPluginManager()->getPlugins();

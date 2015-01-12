@@ -5,7 +5,7 @@ use Justfun\Core\Factory as CoreFactory;
 
 
 /**
- * Description of mysqlAdapter
+ * Class mysqlAdapter
  *
  * @author Pironato Francesco
  */
@@ -82,7 +82,7 @@ class mysqlAdapter {
         $query = mysqli_query($this->connection, $sql);
         $result = mysqli_fetch_row($query);
         // manipolare e idratare result
-        return $result;
+        return self::hydrate($result, $entityPrototype);
     }
     
     public function getAll($table,$entityPrototype){
@@ -106,7 +106,12 @@ class mysqlAdapter {
         mysqli_close($this->connection);
     }
     
-    
+    /**
+     * 
+     * @param type $result
+     * @param type $entityPrototype
+     * @return type
+     */
     protected static function hydrate($result,$entityPrototype){
         $entity = clone $entityPrototype;
         foreach($result as $k => $v){

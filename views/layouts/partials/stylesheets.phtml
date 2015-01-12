@@ -1,0 +1,8 @@
+<?php
+
+if( count($this->response->getStylesheets()) > 0 ): ?>
+<?php foreach($this->response->getStylesheets() as $stylesheet): ?>
+    <link href="<?php echo $stylesheet; ?>" rel="stylesheet">
+<?php endforeach; ?>
+<?php endif; ?>
+

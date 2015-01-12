@@ -3,19 +3,19 @@
 namespace Justfun\Repositories;
 
 use Justfun\Repositories\Factory as RepositoriesFactory;
-use Justfun\Entities\postEntity as Entity;
+use Justfun\Entities\userEntity as Entity;
 
 /**
- * Description of postsRepository
+ * usersRepository
  *
  * @author Pironato Francesco
  */
-class postsRepository {
+class usersRepository {
 
     // qui assumiamo per comodità di utilizzare mysql :D
-    const MAIN_TABLE = 'posts';
+    const MAIN_TABLE = 'users';
 
-    protected $database, $tableName = 'posts';
+    protected $database, $tableName = 'users';
 
     public function __construct($database) {
         $this->database = $database;
@@ -43,16 +43,6 @@ class postsRepository {
          */
     }
 
-    /**
-     *  @TODO: IMPORTANTE!
-     * 
-     *  per poter atterrare su una determinata url devo implementare
-     *  il findByUrl o la search se ho intenzione di andare di %$url%
-     *  percui mi conviene farmi un bel Traits, metterci dentro hydrate rifattorizzato
-     *  e portarmelo dove mi serve !
-     * 
-     */
-    
     public function search() {
         // not yet implemented
     }
