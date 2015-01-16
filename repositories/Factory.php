@@ -15,6 +15,10 @@ class Factory {
         return new postsRepository(CoreFactory::getDatabase());
     }
     
+    public static function getPostCommentsRepository(){
+        return new postCommentsRepository(CoreFactory::getDatabase());
+    }
+    
     public static function getUsersRepository(){
         return new usersRepository(CoreFactory::getDatabase());
     }

@@ -1,0 +1,18 @@
+<?php
+    $post = $this->response->getData()['post'];
+    $postId = null; if($post){ $postId = $post->getId(); } ?>
+<div class="blog-post-comment-add">
+    <form method="post" action="/post-comments/add/">
+        <div class="form-group">
+            <!--<label for="inputCommentMessage">New Comment</label>-->
+            <textarea placeholder="Add comment here.." class="form-control well"  id="inputCommentMessage" name="comment_message" rows="2"></textarea>
+        </div>
+        <input type="hidden" name="post_id" value="<?php echo $postId; ?>" />
+        <input type="hidden" name="to_redirect" value="<?php echo $this->response->getRequest()->getServerData()['REDIRECT_URL'].'#postComments';?>" />
+        <button type="submit" class="btn btn-default">Add Comment</button>
+        
+    </form>
+</div>
+
+
+

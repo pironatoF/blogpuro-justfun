@@ -1,8 +1,22 @@
-<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar hidden-xs">
     <div class="sidebar-module sidebar-module-inset">
         <h4><span class="glyphicon glyphicon-user"></span> About</h4>
         <p> This is <em>Pironato Francesco</em>'s personal blog. This blog contain <mark>IT informations.</mark></p>
     </div>
+    
+    <?php  if( $this->authService->isLogged()): ?>
+    <div class="sidebar-module sidebar-module-inset">
+        
+        <p>Hi, <?php echo $this->getAuthService()->getUser()->getAuthorName(); ?></p>
+        <ol class="list-unstyled">
+            <li><a href="/author/index"><span style="color:black">Author <span style="color:crimson">Area</span></span></a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ol>
+        
+        
+    </div>
+    <?php endif; ?>
+    
     <?php  echo $this->response->renderPartial('payme'); ?>
     <div class="sidebar-module">
         <h4><span class="glyphicon glyphicon-file"></span> Archives</h4>

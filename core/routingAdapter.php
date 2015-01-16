@@ -45,6 +45,14 @@ class routingAdapter {
                 
             }
         }
+       
+        // fix per /?page=n 
+        if( isset($data['controller']) && strstr($data['controller'], '?page')){
+            $data['controller'] = 'index';
+        }
+        if( isset($data['action']) && strstr($data['action'], '?page')){
+            $data['action'] = 'index';
+        }
         
         // homepage
         if( 
@@ -56,11 +64,21 @@ class routingAdapter {
             $data['action'] = 'index';
         }
         
+        // fix camelCase controllers
+        $toNormalize = strstr($data['controller'], '-');
+        // normalize user_id as userId
+        if ($toNormalize) {
+            $data['controller'] = str_replace($toNormalize, '', $data['controller']);
+            $data['controller'].= ucfirst(str_replace('-', '', $toNormalize));
+        }
+        
+        
+        
+        
         $adapter = (object)array(
             'controller'=>$data['controller'],
             'action'=>$data['action'],
             'params'=>$params);
-        
         return $adapter;
     }
     

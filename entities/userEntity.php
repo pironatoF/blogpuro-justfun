@@ -15,10 +15,22 @@ class userEntity {
     
     const ENTITY_NAME = 'user';
     
-    protected $id,$username,$email,$password,$created,$description;
+    protected $id,$username,$email,$password,$created,$description,$authorName;
     
+    public function insertExceptions(){
+        return array('created'=>'created');
+    }
     
-    public function getId() {
+    public function getAuthorName() {
+        return $this->authorName;
+    }
+
+    public function setAuthorName($authorName) {
+        $this->authorName = $authorName;
+        return $this;
+    }
+
+        public function getId() {
         return $this->id;
     }
 
@@ -43,7 +55,7 @@ class userEntity {
     }
 
     public function setId($id) {
-        $this->id = $id;
+        $this->id = (int)$id;
         return $this;
     }
 
@@ -72,6 +84,14 @@ class userEntity {
         return $this;
     }
 
-
+    public function deHydrate(){
+        $dataEntity = (array)get_object_vars ( $this );
+        foreach($dataEntity as $k => $v){
+            if(array_key_exists($k, $this->insertExceptions())){
+                unset($dataEntity[$k]);
+            }
+        }
+        return $dataEntity;
+    }
 
 }

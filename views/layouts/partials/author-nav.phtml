@@ -1,0 +1,57 @@
+<div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+        <li <?php if($this->response->isActiveNav('index')): ?> class="active"<?php endif; ?>>
+            <a href="/author/index">Overview
+                <?php if($this->response->isActiveNav('index')): ?>
+                <span class="sr-only">(current)</span>
+                <?php endif; ?>
+            </a>
+        </li>
+        <li <?php if($this->response->isActiveNav('post-add')): ?> class="active"<?php endif; ?>>
+            <a href="/post/add">Write a BlogPost
+                <?php if($this->response->isActiveNav('post-add')): ?>
+                <span class="sr-only">(current)</span>
+                <?php endif; ?>
+            </a>
+        </li>
+        <li <?php if($this->response->isActiveNav('user-profile')): ?> class="active"<?php endif; ?>>
+            <a href="#">Profile
+                <?php if($this->response->isActiveNav('user-profile')): ?>
+                <span class="sr-only">(current)</span>
+                <?php endif; ?>
+            </a>
+        </li>
+        <li >
+            <a href="/">Homepage
+        
+            </a>
+        </li>
+        <li>
+            <a href="/auth/logout">Logout
+            
+            </a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li <?php if($this->response->isActiveNav('post-comments-list')): ?> class="active"<?php endif; ?>>
+            <a href="/post-comments/list">Your Comments
+                <?php if($this->response->isActiveNav('post-comments-list')): ?>
+                <span class="sr-only">(current)</span>
+                <?php endif; ?>
+            </a>
+        </li>
+    </ul>
+
+    <!--<ul class="nav nav-sidebar">
+      <li><a href="">Nav item</a></li>
+      <li><a href="">Nav item again</a></li>
+      <li><a href="">One more nav</a></li>
+      <li><a href="">Another nav item</a></li>
+      <li><a href="">More navigation</a></li>
+    </ul>
+    <ul class="nav nav-sidebar">
+      <li><a href="">Nav item again</a></li>
+      <li><a href="">One more nav</a></li>
+      <li><a href="">Another nav item</a></li>
+    </ul>-->
+</div>

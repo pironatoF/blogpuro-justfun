@@ -1,0 +1,41 @@
+/* 
+    Created on : 13-gen-2015, 17.38.32
+    Author     : Pironato Francesco
+*/
+
+.top-buffer{
+    margin-top:20px;
+}
+
+.text-black{
+    color:#000;
+}
+
+.text-crimson{
+    color:crimson;
+}
+
+.blog-main{
+    font-size: 14px;
+}
+
+.blog-footer{
+    background-color: #101010;
+}
+
+.table td.centerTable {
+   text-align: center;   
+}
+
+.container-fluid .pagination>li>a, .pagination>li>span {
+    color:#222;
+}
+
+.container-fluid .pagination>.active>a,.blog-main .pagination>.active>span,.blog-main .pagination>.active>a:hover,.blog-main .pagination>.active>span:hover,.blog-main .pagination>.active>a:focus,.blog-main .pagination>.active>span:focus{
+    background-color: #222;
+    color:#fff;
+}
+
+.mini-dash .img-responsive{
+    max-width:30%;
+}

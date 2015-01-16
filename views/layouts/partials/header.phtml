@@ -2,10 +2,18 @@
     <div class="container">
         
         <nav class="blog-nav">
-            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'homepage'): echo 'active'; endif; ?>" href="/">Home</a>
-            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'contact'): echo 'active'; endif; ?>" href="#">Contact</a>
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'homepage'): echo 'active'; endif; ?>" href="/">Homepage</a>
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'contact'): echo 'active'; endif; ?>" href="mailto:pironato.f@gmail.com">Contact</a>
             <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'about'): echo 'active'; endif; ?>" href="#">About</a>
-            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'auth'): echo 'active'; endif; ?>" href="/auth/login">Login</a>
+            <a 
+                class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'auth'): echo 'active'; endif; ?>" 
+                href="<?php echo $this->response->getCurrentStatusLoginOrLogoutNavItem()['url'] ?>"
+            >
+                <?php echo $this->response->getCurrentStatusLoginOrLogoutNavItem()['name'] ?>
+            </a>
+            <?php if($this->response->getAuthService()->isLogged()): ?>
+            <a class="blog-nav-item <?php if($this->response->getActiveItemNav() == 'author'): echo 'active'; endif; ?>" href="/author/index"><span style="color:crimson" >Author<span style="color:#fff" >Area</span></span></a>
+            <?php endif; ?>
         </nav>
     </div>
 </div>

@@ -2,6 +2,9 @@
 
 use Justfun\Core\Factory as CoreFactory;
 
+ini_set('session.gc_maxlifetime',60*60*24);
+
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors','On');
 
@@ -42,6 +45,12 @@ function __autoload($class_name) {
     }
  
     include $path. '.php';
+}
+
+// include traits
+$traitsInDir = glob("traits/*.php");
+if(count($traitsInDir) > 0){
+    foreach($traitsInDir as $trait) include $trait;
 }
 
 // include plugin

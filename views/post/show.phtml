@@ -1,0 +1,27 @@
+<?php $post = $this->response->getData()['post']; if ($post):  ?>
+        <div class="blog-post">
+            <h2 class="blog-post-title"><?php echo $post->getTitle(); ?></h2>
+            <p class="blog-post-meta"><?php echo $post->getCreated(); ?> by  <a href="#"><?php echo $post->getUser()->getAuthorName(); ?></a></p>
+            <?php if($post->getCommentsCount() > 0): ?>
+            <small>
+                <a class="goToComments" href="#postComments">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <?php echo $post->getCommentsCount(); ?>
+                </a>
+            </small>
+            <?php endif; ?>
+            <p>
+                <?php echo $post->getMessage(); ?> 
+                <!-- <a href="/"> 
+                     <small><span class="glyphicon glyphicon-link"></span> Homepage</small> 
+                </a>--> 
+            </p>
+            
+        </div>
+<script type="text/javascript">
+    $('.goToComments').click(function(){ setTimeout(function(){$('textarea').focus(); },400);  });
+</script>
+        <?php echo $this->renderPartial('comments','post'); ?>
+<?php endif; ?>
+
+

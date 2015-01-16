@@ -1,17 +1,26 @@
 <?php if ($this->response->getData()['posts']): ?>
     <?php foreach ($this->response->getData()['posts'] as $post): ?>
         <div class="blog-post">
-            <h2 class="blog-post-title"><?php echo $post->getTitle(); ?></h2>
-            <p class="blog-post-meta"><?php echo $post->getCreated(); ?> by  <a href="#">Pironato Francesco</a></p>
+            <h2 class="blog-post-title"> <span class="glyphicon glyphicon-file"></span> <?php echo $post->getTitle(); ?></h2>
+            <p class="blog-post-meta"><?php echo $post->getCreated(); ?> by  <a href="#"><?php echo $post->getUser()->getAuthorName(); ?></a></p>
             <p>
                 <?php echo $post->getMessagePreview(); ?> 
-                 <a href="<?php echo $post->getUrl(); ?>"> 
-                     <small><span class="glyphicon glyphicon-link"></span> Read more</small> 
-                </a> 
-            </p>
-            
+
+            <ul class="list-inline text-right">
+                <li><a href="<?php echo $post->getUrl(); ?>"> 
+                        <small><span class="glyphicon glyphicon-link"></span> Read more</small>
+                    </a></li>
+                <li><small>
+
+                        <?php
+                        echo $post->getCommentsCount() > 0 ? '<span class="glyphicon glyphicon-comment"></span> ' . $post->getCommentsCount() : '';
+                        ?>
+                    </small></li>
+            </ul>
+        </p>
         </div>
+        
     <?php endforeach; ?>
-    <?php echo $this->response->renderPartial('paginator','index'); ?>
+    <?php echo $this->response->renderPartial('paginator', 'author'); ?>
 <?php endif; ?>
 

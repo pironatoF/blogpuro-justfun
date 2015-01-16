@@ -1,0 +1,42 @@
+<?php use \Justfun\Services\urlManagerService as  urlManagerService; ?>
+
+
+<?php  if ($this->response->getData()['comments']): ?>
+<h2 class="sub-header">Your Comments</h2>    
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th class="hidden-xs">Post ID</th>
+            <th>Message</th>
+            <th class="hidden-xs">Created</th>
+            <?php /*<th>Is Guest</th> */ ?>
+            <th>Post URL</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+           <?php foreach ($this->response->getData()['comments'] as $entity):
+                    
+               ?>  
+          <tr>
+            <th scope="row"><?php echo $entity->getId(); ?></th>
+            <td class="hidden-xs"><?php echo $entity->getPost()->getId(); ?></td>
+            <td><?php echo $entity->getMessagePreview(10); ?></td>
+            <td class="hidden-xs"><?php echo $entity->getCreated(); ?></td>
+            
+            <?php /*<td class="centerTable"><?php echo $entity->getIsGuest() == 1 ? 'Yes':'No'; ?></td> */ ?>
+            <td><a href="<?php echo $entity->getPost()->getUrl();  ?>"> <?php echo $this->response->getUrlManager($entity->getPost()->getUrl(), urlManagerService::URL_SHOW,'post')->getUrl(); ?></a></td>
+            <td class="centerTable"><a href="/post-comments/edit/<?php echo $entity->getId(); ?>" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+            <td class="centerTable"><a href="/post-comments/delete/<?php echo $entity->getId(); ?>" > <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+          </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+      <?php if(isset($this->response->getData()['paginator'])) echo $this->renderPartial('paginator','author'); ?>
+</div>
+<?php endif; ?>
+
+

@@ -1,0 +1,36 @@
+
+<?php
+    $post = $this->response->getData()['post'];
+    if($post): $comments = $post->getComments(); ?>
+    
+    <div class="blog-post-comments  col-sm-offset-1" id="postComments">
+        <?php echo $this->response->renderPartial('add','post-comments'); ?>
+    <?php if($comments): ?>    
+        <?php foreach($comments as $comment): ?>
+        <div class="blog-post-comment">
+            <p class="blog-post-comment-header">
+                
+                <span class="blog-post-comment-author">
+                    <span class="glyphicon glyphicon-user"></span>
+                <?php if($comment->getUser()->getId()): ?>
+                    <a href="/user/profile/<?php echo $comment->getUser()->getUsername(); ?>"><?php echo $comment->getUser()->getAuthorName(); ?></a>,
+                <?php else: ?>
+                    <?php echo $comment->getUser()->getAuthorName(); ?>,
+                <?php endif; ?>
+                
+                </span> 
+                <small class="blog-post-comment-date">
+                    <?php echo $comment->getCreated(); ?>
+                </small>
+            </p>
+            
+            <p class="blog-post-comment-content well">
+                <?php echo $comment->getMessage(); ?>
+            </p>
+        </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    </div>
+    
+<?php endif; ?>
+

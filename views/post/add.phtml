@@ -1,0 +1,32 @@
+<?php use \Justfun\Services\urlManagerService as  urlManagerService; ?>
+<?php
+    $viewData = $this->response->getData();
+    if(isset($viewData['post'])) $post = $viewData['post'];
+?>
+<?php  if( isset($post['published']) )  $post['published'] = (int)$post['published']; ?>
+
+<form method="post" action="/post/add/">
+  <div class="form-group">
+    <label for="inputTitle">Title</label>
+    <input type="text" name="title" class="form-control" value="<?php  echo isset($post['title']) ? $post['title'] : '';  ?>" id="inputTitle" placeholder="Enter a title">
+  </div>
+    <?php /*
+  <div class="form-group">
+    <label for="inputUrl">Url</label>
+    <input type="text" name="url" disabled="disabled" class="form-control" value="<?php  echo isset($post['url']) ? $post['title'] : '';  ?>" id="inputUrl" placeholder="Enter relative url">
+  </div>*/?>
+  <div class="form-group">
+    <label for="inputMessage">Content</label>
+    <textarea class="form-control" name="message" rows="25"><?php  echo isset($post['message']) ? $post['message'] : '';  ?></textarea>
+  </div>
+  <div class="form-group">
+    <label for="inputStatus">Status</label>
+    <select class="form-control" name="published" id="inputStatus">
+        <option <?php if( isset($post['published']) && $post['published']  == 1) echo 'selected'; ?> value="1">published</option>
+        <option <?php if( isset($post['published']) && $post['published']  == 0) echo 'selected'; ?> value="0">unpublished</option>
+    </select>
+  </div>
+  
+  <button type="submit" class="btn btn-success">Save</button>
+  <a href="/author/index" class="btn btn-warning">Cancel</a>
+</form>

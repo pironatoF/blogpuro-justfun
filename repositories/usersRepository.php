@@ -4,6 +4,9 @@ namespace Justfun\Repositories;
 
 use Justfun\Repositories\Factory as RepositoriesFactory;
 use Justfun\Entities\userEntity as Entity;
+use Justfun\Traits\dataPersistenceTrait as dataPersistenceTrait;
+
+use Justfun\Services\paginatorService as Paginator;
 
 /**
  * usersRepository
@@ -11,6 +14,8 @@ use Justfun\Entities\userEntity as Entity;
  * @author Pironato Francesco
  */
 class usersRepository {
+    
+    
 
     // qui assumiamo per comodità di utilizzare mysql :D
     const MAIN_TABLE = 'users';
@@ -33,14 +38,12 @@ class usersRepository {
         return $this->database->getConnectionAdapter()->find($id, self::MAIN_TABLE, new Entity());
     }
 
-    public function findByTitle($title) {
+    public function findByValue($key,$value) {
         $connection = $this->database->getConnectionAdapter()->getConnection();
-        $sql = 'SELECT * FROM ' . self::MAIN_TABLE . ' WHERE title="' . $title . '"';
+        $sql = 'SELECT * FROM ' . self::MAIN_TABLE . ' WHERE ' . $key . '="' . $value . '"';
         $query = mysqli_query($connection, $sql);
-        $result = mysqli_fetch_row($query);
-        /** manipolare dati (hydrate)... forse conviene farlo
-         *  in tutti i repo usando un traits da portare orizzontalmente!
-         */
+        $result = mysqli_fetch_assoc($query);
+        return dataPersistenceTrait::hydrate($result, new Entity());
     }
 
     public function search() {

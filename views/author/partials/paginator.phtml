@@ -1,0 +1,23 @@
+<?php $paginator = $this->response->getData()['paginator'];   ?>
+<nav>
+  <ul class="pagination pagination-lg">
+    
+     <li <?php if($paginator->getCurrentPage()-1 < 1): ?>
+        class="disabled"
+        <?php endif; ?>><a href="<?php echo $paginator->getBaseUrl(); ?>?page=<?php echo $paginator->getCurrentPage()-1 >= 1 ?$paginator->getCurrentPage()-1: $paginator->getCurrentPage() ; ?>" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    <?php for ($i=1;$i<=$paginator->getNumOfPages();$i++): ?>
+        <li <?php if($i == $paginator->getCurrentPage()): ?>class="active"<?php endif; ?>>
+            <a href="<?php echo $paginator->getBaseUrl(); ?>?page=<?php echo $i; ?>"> <?php echo $i; ?>
+                <?php if($i == $paginator->getCurrentPage()): ?>
+                <span class="sr-only">(current)</span>
+                <?php endif; ?>
+            </a>
+        </li>
+    <?php endfor; ?>
+    <li 
+        <?php if($paginator->getCurrentPage()+1 > $paginator->getNumOfPages()): ?>
+        class="disabled"
+        <?php endif; ?>
+        ><a href="<?php echo $paginator->getBaseUrl(); ?>?page=<?php echo  $paginator->getCurrentPage()+1 > $paginator->getNumOfPages()? $paginator->getCurrentPage(): $paginator->getCurrentPage()+1; ?>" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+  </ul>
+</nav>

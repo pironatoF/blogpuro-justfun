@@ -12,10 +12,20 @@ use Justfun\Core\Factory as CoreFactory;
  */
 class Factory {
     
-    // authservice..
+    public static function getAuthService(){
+        return new authService();
+    }
     
-    /*
-    public static function getUsersRepository(){
-        return new usersRepository(CoreFactory::getDatabase());
-    }*/
+    public static function getUrlManagerService($url = null,$urlType,$urlName){
+        if(!$url) $url = CoreFactory::getApplication()->getCore()->getServer()['REQUEST_URI'];
+        return new urlManagerService($url,$urlType,$urlName);
+    }
+    
+    public static function getUrlifyService($stringToUrl){
+        return new urlifyService($stringToUrl);
+    }
+    
+    public static function getPaginatorService($currentPage, $itemsNumber, $itemsPerPage){
+        return new paginatorService($currentPage, $itemsNumber, $itemsPerPage);
+    }
 }

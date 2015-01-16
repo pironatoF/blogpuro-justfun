@@ -1,0 +1,27 @@
+<?php use \Justfun\Services\urlManagerService as  urlManagerService; ?>
+<?php $post = $this->response->getData()['post']; if ($post):  ?>
+<form method="post" action="/post/edit/<?php echo $post->getId(); ?>">
+  <div class="form-group">
+    <label for="inputTitle">Title</label>
+    <input type="text" name="title" class="form-control" value="<?php echo $post->getTitle(); ?>" id="inputTitle" placeholder="Enter a title">
+  </div>
+  <div class="form-group">
+    <label for="inputUrl">Url</label>
+    <input type="text" disabled="disabled" name="url" class="form-control" value="<?php echo $this->response->getUrlManager($post->getUrl(), urlManagerService::URL_SHOW,'post')->getUrl(); ?>" id="inputUrl" placeholder="Enter relative url">
+  </div>
+  <div class="form-group">
+    <label for="inputMessage">Content</label>
+    <textarea class="form-control" name="message" rows="25"><?php echo $post->getMessage(); ?></textarea>
+  </div>
+  <div class="form-group">
+    <label for="inputStatus">Status</label>
+    <select class="form-control" name="published" id="inputStatus">
+        <option <?php if($post->getPublished() == 1) echo 'selected'; ?> value="1">published</option>
+        <option <?php if($post->getPublished() == 0) echo 'selected'; ?> value="0">unpublished</option>
+    </select>
+  </div>
+  
+  <button type="submit" class="btn btn-success">Save</button>
+  <a href="/author/index" class="btn btn-warning">Cancel</a>
+</form>
+<?php endif; ?>

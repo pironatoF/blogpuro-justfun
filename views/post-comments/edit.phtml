@@ -1,0 +1,11 @@
+<?php use \Justfun\Services\urlManagerService as  urlManagerService; ?>
+<?php $entity = $this->response->getData()['comment']; if ($entity):  ?>
+<form method="post" action="/post-comments/edit/<?php echo $entity->getId(); ?>">
+  <div class="form-group top-buffer">
+    <label for="inputMessage">Content</label>
+    <textarea class="form-control" name="message" rows="15"><?php echo $entity->getMessage(); ?></textarea>
+  </div> 
+  <button type="submit" class="btn btn-success">Save</button>
+  <a href="/post-comments/list" class="btn btn-warning">Cancel</a>
+</form>
+<?php endif; ?>
