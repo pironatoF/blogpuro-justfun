@@ -7,7 +7,7 @@ use Justfun\Core\Factory as CoreFactory;
 /**
  * Description of routingAdapter
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class routingAdapter {
     

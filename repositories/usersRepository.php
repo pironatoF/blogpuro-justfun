@@ -11,7 +11,7 @@ use Justfun\Services\paginatorService as Paginator;
 /**
  * usersRepository
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class usersRepository {
     

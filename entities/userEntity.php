@@ -9,7 +9,7 @@ namespace Justfun\Entities;
 /**
  * userEntity
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class userEntity {
     

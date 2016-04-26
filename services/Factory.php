@@ -8,7 +8,7 @@ use Justfun\Core\Factory as CoreFactory;
 /**
  * Description of Factory
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Factory {
     

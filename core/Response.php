@@ -6,7 +6,7 @@ use Justfun\Services\urlManagerService as urlManagerService;
 /**
  * Description of Response
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Response {
 

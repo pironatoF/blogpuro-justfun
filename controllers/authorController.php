@@ -13,7 +13,7 @@ use Justfun\Services\Factory as servicesFactory;
 /**
  * Class authorController
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  * 
  */
 class authorController extends Controller{

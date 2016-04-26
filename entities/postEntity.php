@@ -6,7 +6,7 @@ use Justfun\Repositories\Factory as repositoriesFactory;
 /**
  * Description of postEntity
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class postEntity {
     

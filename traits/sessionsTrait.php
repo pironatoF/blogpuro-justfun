@@ -5,7 +5,7 @@ namespace Justfun\Traits;
 /**
  * Trait sessionsTrait
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 trait sessionsTrait {
     public static function sessionDataPush($key,$value){

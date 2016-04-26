@@ -5,7 +5,7 @@ namespace Justfun\Services;
 /**
  * Class urlifyService
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 Class urlifyService {
     

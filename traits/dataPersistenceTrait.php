@@ -5,7 +5,7 @@ namespace Justfun\Traits;
 /**
  * Trait dataPersistenceTrait
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 trait dataPersistenceTrait {
 

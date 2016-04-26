@@ -15,7 +15,7 @@ use Justfun\Entities\postCommentEntity as postCommentEntity;
 /**
  * Class postCommentsController
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  * 
  */
 class postCommentsController extends Controller {

@@ -7,7 +7,7 @@ use Justfun\Core\Factory as CoreFactory;
 /**
  * Description of Database
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Database {
     

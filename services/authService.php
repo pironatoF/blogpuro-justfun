@@ -9,7 +9,7 @@ use Justfun\Traits\sessionsTrait  as sessionsTrait;
 /**
  * Clss authService
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 Class authService {
      

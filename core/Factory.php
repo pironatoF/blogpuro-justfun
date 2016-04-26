@@ -14,7 +14,7 @@ use Justfun\Core\Plugin as PluginManager;
 /**
  * Description of Factory
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Factory {
    

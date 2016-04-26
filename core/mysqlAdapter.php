@@ -10,7 +10,7 @@ use Justfun\Services\paginatorService as Paginator;
 /**
  * Class mysqlAdapter
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class mysqlAdapter {
 

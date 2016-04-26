@@ -13,7 +13,7 @@ use Justfun\Services\Factory as servicesFactory;
 /**
  * Description of indexController
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  * 
  */
 class indexController extends Controller{

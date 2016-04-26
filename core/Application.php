@@ -7,7 +7,7 @@ use Justfun\Core\Factory as CoreFactory;
 /**
  * Description of Application
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Application{
     

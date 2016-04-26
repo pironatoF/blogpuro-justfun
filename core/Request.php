@@ -6,7 +6,7 @@ use Justfun\Core\Application as Application;
 /**
  * Description of Request
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Request {
     

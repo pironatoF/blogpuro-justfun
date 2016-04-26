@@ -16,7 +16,7 @@ use Justfun\Core\Response as Response;
 /**
  * Description of testController
  *
- * @author ita
+ * @author Pironato Francesco pironato.f@gmail.com
  * 
  * @TODO: fare un'astrazione e restituire sempre un oggetto Response per ogni action
  */

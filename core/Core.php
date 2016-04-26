@@ -5,7 +5,7 @@ use Justfun\Core\Interfaces\statusInterface as status;
 /**
  * Description of Core
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Core implements status {
 

@@ -11,7 +11,7 @@ namespace Justfun\Core;
 /**
  * Description of Routing
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Routing {
     

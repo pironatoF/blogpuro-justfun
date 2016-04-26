@@ -5,7 +5,7 @@ namespace Justfun\Services;
 /**
  * Class paginatorService
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 Class paginatorService {
     

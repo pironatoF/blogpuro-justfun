@@ -6,7 +6,7 @@ use Justfun\Entities\userEntity as userEntity;
 /**
  * Description of postCommentEntity
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class postCommentEntity {
     

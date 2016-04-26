@@ -10,7 +10,7 @@ use Justfun\Core\Factory as CoreFactory;
 /**
  * Description of Controller
  *
- * @author ita
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Controller {
     

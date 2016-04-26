@@ -7,7 +7,7 @@ use Justfun\Core\Routing as Router;
 /**
  * Description of Plugin
  *
- * @author Pironato Francesco
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 class Plugin {
     

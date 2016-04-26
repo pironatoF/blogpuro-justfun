@@ -10,7 +10,7 @@ namespace Justfun\Core\Interfaces;
 
 /**
  *
- * @author outsider
+ * @author Pironato Francesco pironato.f@gmail.com
  */
 interface statusInterface {
     const STATUS_OK = 'ok';
