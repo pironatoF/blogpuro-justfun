@@ -13,17 +13,16 @@ Php 5.x MVC Framework written for study purpose.
 
 This framework provide some builtin features such:
 
-- Autoloader
-
 - MVC(S) layer
  - Model -> Repository, Entities + Mysql Adapter full implemented
  - Controller -> Action that manage Request and return the right Response based on routing
+              - Response -> HTML, JSON support, partial rendering, manage nav, inject css and more..
  - View
  - Service -> Provide some required extra business logic such Paginator
 
 - Routing -> simple routing /controller/view
 - Plugin AOP layer (for some framework's hook) -> some plugin such debugger provided
-- View helpers such partial with few conventions
+- More stuff..
 
 This framework provided some example of many pattern implementations,
 such Factory, Entity/Repository, Prototipe, Adapter, Singleton pattern and more.
